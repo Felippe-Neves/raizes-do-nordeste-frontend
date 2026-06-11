@@ -46,10 +46,10 @@ function App() {
             <Link to="/" onClick={fecharMenu}>Início</Link>
             <Link to="/cardapio" onClick={fecharMenu}>Cardápio</Link>
             <Link to="/carrinho" onClick={fecharMenu}>Carrinho</Link>
+            <Link to="/pedidos" onClick={fecharMenu}>Pedidos</Link>
             <Link to="/fidelidade" onClick={fecharMenu}>Fidelidade</Link>
             <Link to="/conta" onClick={fecharMenu}>Login</Link>
             <Link to="/dashboard" onClick={fecharMenu}>Dashboard</Link>
-            <Link to="/pedidos" onClick={fecharMenu}>Pedidos</Link>
           </nav>
         </div>
       </header>
