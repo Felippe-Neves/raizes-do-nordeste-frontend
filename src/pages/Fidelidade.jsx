@@ -1,0 +1,76 @@
+import { useState } from 'react';
+import { recompensas } from '../data/mockData';
+
+function Fidelidade() {
+  const [pontos, setPontos] = useState(180);
+
+  const handleResgatar = (recompensa) => {
+    if (pontos >= recompensa.pontosNecessarios) {
+      setPontos((atual) => atual - recompensa.pontosNecessarios);
+      alert(`Recompensa resgatada: ${recompensa.titulo}`);
+    }
+  };
+
+  return (
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '900px' }}>
+      <h1>Programa de Fidelidade</h1>
+      <p>
+        Este programa de fidelidade é simulado e respeita o consentimento LGPD salvo na página Conta.
+      </p>
+      <div style={{ margin: '20px 0', padding: '16px', backgroundColor: '#f1f1f1', borderRadius: '8px' }}>
+        <strong>Saldo de pontos:</strong> {pontos}
+      </div>
+
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+          gap: '16px'
+        }}
+      >
+        {recompensas.map((recompensa) => {
+          const podeResgatar = pontos >= recompensa.pontosNecessarios;
+
+          return (
+            <div
+              key={recompensa.id}
+              style={{
+                border: '1px solid #ddd',
+                borderRadius: '8px',
+                padding: '16px',
+                backgroundColor: '#fff',
+                boxShadow: '0 2px 6px rgba(0, 0, 0, 0.05)'
+              }}
+            >
+              <h2 style={{ margin: '0 0 8px' }}>{recompensa.titulo}</h2>
+              <p style={{ margin: '0 0 8px', color: '#666' }}>{recompensa.descricao}</p>
+              <p style={{ margin: '0 0 4px' }}>
+                <strong>Tipo:</strong> {recompensa.tipo}
+              </p>
+              <p style={{ margin: '0 0 12px' }}>
+                <strong>Pontos necessários:</strong> {recompensa.pontosNecessarios}
+              </p>
+              <button
+                type="button"
+                onClick={() => handleResgatar(recompensa)}
+                disabled={!podeResgatar}
+                style={{
+                  padding: '10px 16px',
+                  border: 'none',
+                  borderRadius: '4px',
+                  backgroundColor: podeResgatar ? '#2a9d8f' : '#999',
+                  color: '#fff',
+                  cursor: podeResgatar ? 'pointer' : 'not-allowed'
+                }}
+              >
+                {podeResgatar ? 'Resgatar recompensa' : 'Pontos insuficientes'}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default Fidelidade;
