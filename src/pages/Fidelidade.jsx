@@ -12,16 +12,17 @@ function Fidelidade() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '900px' }}>
+    <div className="page-layout loyalty-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '900px' }}>
       <h1>Programa de Fidelidade</h1>
       <p>
         Este programa de fidelidade é simulado e respeita o consentimento LGPD salvo na página Conta.
       </p>
-      <div style={{ margin: '20px 0', padding: '16px', backgroundColor: '#f1f1f1', borderRadius: '8px' }}>
+      <div className="loyalty-balance" style={{ margin: '20px 0', padding: '16px', backgroundColor: '#f1f1f1', borderRadius: '8px' }}>
         <strong>Saldo de pontos:</strong> {pontos}
       </div>
 
       <div
+        className="responsive-grid loyalty-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -33,6 +34,7 @@ function Fidelidade() {
 
           return (
             <div
+              className="responsive-card loyalty-card"
               key={recompensa.id}
               style={{
                 border: '1px solid #ddd',

@@ -84,13 +84,14 @@ function Carrinho() {
   const total = subtotal;
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div className="page-layout cart-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>Carrinho</h1>
 
       {itens.length === 0 ? (
         <p>Seu carrinho está vazio. Acesse o cardápio para adicionar produtos.</p>
       ) : (
         <div
+          className="cart-layout"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -98,7 +99,7 @@ function Carrinho() {
             alignItems: 'start'
           }}
         >
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          <ul className="cart-items" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {itens.map((item) => (
               <li key={item.id}>
                 <strong style={{ fontSize: '18px' }}>{item.nome}</strong>
@@ -112,6 +113,7 @@ function Carrinho() {
                 </p>
 
                 <div
+                  className="cart-item__actions"
                   style={{
                     marginTop: '14px',
                     display: 'flex',
@@ -144,6 +146,7 @@ function Carrinho() {
           </ul>
 
           <section
+            className="cart-summary"
             style={{
               padding: '20px',
               borderRadius: '14px',
@@ -161,7 +164,7 @@ function Carrinho() {
               <strong>Total:</strong> {formatarMoeda(total)}
             </p>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+            <div className="cart-summary__actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
               <button type="button" onClick={limparCarrinho}>
                 Limpar carrinho
               </button>

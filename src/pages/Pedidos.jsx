@@ -44,6 +44,7 @@ function Pedidos() {
 
   return (
     <main
+      className="page-layout orders-page"
       style={{
         padding: '20px',
         fontFamily: 'Arial, sans-serif',
@@ -58,6 +59,7 @@ function Pedidos() {
       </p>
 
       <section
+        className="orders-legend"
         aria-label="Legenda dos status"
         style={{
           margin: '24px 0',
@@ -68,6 +70,7 @@ function Pedidos() {
       >
         <h2 style={{ margin: '0 0 12px', fontSize: '18px' }}>Legenda dos status</h2>
         <div
+          className="responsive-grid orders-legend__grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -76,6 +79,7 @@ function Pedidos() {
         >
           {Object.entries(estilosStatus).map(([status, estilo]) => (
             <div
+              className="orders-legend__item"
               key={status}
               style={{
                 padding: '10px',
@@ -104,6 +108,7 @@ function Pedidos() {
       </section>
 
       <section
+        className="responsive-grid orders-grid"
         aria-label="Lista de pedidos"
         style={{
           display: 'grid',
@@ -114,6 +119,7 @@ function Pedidos() {
         {/* Exibe pedidos simulados para demonstrar o acompanhamento sem backend. */}
         {pedidosMock.map((pedido) => (
           <article
+            className="order-card"
             key={pedido.id}
             style={{
               border: '1px solid #ddd',
@@ -124,6 +130,7 @@ function Pedidos() {
             }}
           >
             <div
+              className="order-card__header"
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',

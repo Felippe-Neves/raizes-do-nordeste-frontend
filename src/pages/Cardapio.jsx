@@ -1,6 +1,20 @@
 import { useState } from 'react';
 import { produtos, unidades } from '../data/mockData';
 
+const escolherEmoji = (produto) => {
+  const nome = produto.nome.toLocaleLowerCase('pt-BR');
+  const categoria = produto.categoria.toLocaleLowerCase('pt-BR');
+
+  if (nome.includes('café') || nome.includes('cafe')) return '☕';
+  if (categoria.includes('tapioca')) return '🫓';
+  if (categoria.includes('cuscuz')) return '🌽';
+  if (categoria.includes('bolo')) return '🍰';
+  if (categoria.includes('bebida')) return '🥤';
+  if (categoria.includes('combo')) return '🍽️';
+
+  return '🍴';
+};
+
 function Cardapio() {
   const [unidadeSelecionada, setUnidadeSelecionada] = useState(unidades[0]?.id ?? '');
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todos');
@@ -29,11 +43,11 @@ function Cardapio() {
   };
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div className="page-layout catalog-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>Cardápio</h1>
 
-      <div style={{ marginBottom: '16px', display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
-        <div>
+      <div className="filter-bar" style={{ marginBottom: '16px', display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
+        <div className="filter-field">
           <label htmlFor="unidade" style={{ marginRight: '8px', fontWeight: 'bold' }}>
             Escolha a unidade:
           </label>
@@ -51,7 +65,7 @@ function Cardapio() {
           </select>
         </div>
 
-        <div>
+        <div className="filter-field">
           <label htmlFor="categoria" style={{ marginRight: '8px', fontWeight: 'bold' }}>
             Categoria:
           </label>
@@ -77,6 +91,7 @@ function Cardapio() {
       )}
 
       <div
+        className="responsive-grid catalog-grid"
         style={{
           display: 'grid',
           gap: '16px',
@@ -85,6 +100,7 @@ function Cardapio() {
       >
         {produtosFiltrados.map((produto) => (
           <div
+            className="responsive-card catalog-card"
             key={produto.id}
             style={{
               border: '1px solid #ddd',
@@ -94,6 +110,9 @@ function Cardapio() {
               backgroundColor: '#fff'
             }}
           >
+            <div className="catalog-card__visual" aria-hidden="true">
+              <span>{escolherEmoji(produto)}</span>
+            </div>
             <h2 style={{ margin: '0 0 8px' }}>{produto.nome}</h2>
             <p style={{ margin: '0 0 8px', color: '#666' }}>{produto.categoria}</p>
             <p style={{ margin: '0 0 12px', lineHeight: '1.4' }}>{produto.descricao}</p>

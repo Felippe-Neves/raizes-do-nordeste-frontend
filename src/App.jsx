@@ -7,6 +7,7 @@ import Fidelidade from './pages/Fidelidade'
 import Conta from './pages/Conta'
 import Dashboard from './pages/Dashboard'
 import Pedidos from './pages/Pedidos'
+import './App.css'
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(false)
@@ -14,10 +15,13 @@ function App() {
   const fecharMenu = () => setMenuAberto(false)
 
   return (
-    <div className="app-shell">
+    <div className={`app-shell ${menuAberto ? 'app-shell--menu-open' : ''}`}>
       <header className="site-header">
         <div className="site-header__content">
-          <Link className="brand" to="/">Raízes do Nordeste</Link>
+          <Link className="brand" to="/">
+            <span>Raízes do</span>
+            <span>Nordeste</span>
+          </Link>
           <button
             className="menu-toggle"
             type="button"

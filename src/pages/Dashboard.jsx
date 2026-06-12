@@ -24,6 +24,7 @@ function Dashboard() {
 
   return (
     <main
+      className="page-layout dashboard-page"
       style={{
         padding: '20px',
         fontFamily: 'Arial, sans-serif',
@@ -37,6 +38,7 @@ function Dashboard() {
       </p>
 
       <section
+        className="responsive-grid dashboard-indicators"
         aria-label="Indicadores gerais"
         style={{
           display: 'grid',
@@ -47,6 +49,7 @@ function Dashboard() {
       >
         {indicadores.map((indicador, indice) => (
           <article
+            className="dashboard-indicator"
             key={indicador.titulo}
             style={{
               padding: '20px',
@@ -65,6 +68,7 @@ function Dashboard() {
       </section>
 
       <section
+        className="dashboard-summary"
         aria-labelledby="resumo-operacional"
         style={{
           padding: '20px',
@@ -77,6 +81,7 @@ function Dashboard() {
         </h2>
 
         <div
+          className="responsive-grid dashboard-summary__grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
