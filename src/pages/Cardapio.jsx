@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { produtos, unidades } from '../data/mockData';
 
 const escolherEmoji = (produto) => {
@@ -18,9 +18,11 @@ const escolherEmoji = (produto) => {
 function Cardapio() {
   const [unidadeSelecionada, setUnidadeSelecionada] = useState(unidades[0]?.id ?? '');
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todos');
+  const [produtoAdicionadoId, setProdutoAdicionadoId] = useState('');
 
   const unidadeAtual = unidades.find((unidade) => unidade.id === unidadeSelecionada);
-  // Exibe apenas produtos disponíveis na unidade e categoria selecionadas.
+
+  // Mantém o cardápio coerente com a unidade escolhida e com a categoria ativa.
   const produtosFiltrados = produtos.filter(
     (produto) =>
       produto.unidadesDisponiveis.includes(unidadeSelecionada) &&
@@ -38,9 +40,19 @@ function Cardapio() {
     const carrinho = carrinhoAtual ? JSON.parse(carrinhoAtual) : [];
     carrinho.push(produto);
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-    alert(`${produto.nome} adicionado ao carrinho`);
+    window.dispatchEvent(new Event('carrinho-atualizado'));
+    setProdutoAdicionadoId(produto.id);
   };
+
+  useEffect(() => {
+    if (!produtoAdicionadoId) return undefined;
+
+    const timeout = setTimeout(() => {
+      setProdutoAdicionadoId('');
+    }, 2600);
+
+    return () => clearTimeout(timeout);
+  }, [produtoAdicionadoId]);
 
   return (
     <div className="page-layout catalog-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
@@ -111,11 +123,12 @@ function Cardapio() {
             }}
           >
             <div className="catalog-card__visual" aria-hidden="true">
-              <span>{escolherEmoji(produto)}</span>
+              <span className="catalog-card__emoji">{escolherEmoji(produto)}</span>
+              <span className="catalog-card__tag">{produto.categoria}</span>
             </div>
             <h2 style={{ margin: '0 0 8px' }}>{produto.nome}</h2>
             <p style={{ margin: '0 0 8px', color: '#666' }}>{produto.categoria}</p>
-            <p style={{ margin: '0 0 12px', lineHeight: '1.4' }}>{produto.descricao}</p>
+            <p className="catalog-card__description" style={{ margin: '0 0 12px', lineHeight: '1.4' }}>{produto.descricao}</p>
             <p style={{ margin: '0 0 12px', fontWeight: 'bold' }}>
               {formatarPreco(produto.preco)}
             </p>
@@ -136,8 +149,14 @@ function Cardapio() {
                 cursor: 'pointer'
               }}
             >
-              Adicionar ao Carrinho
+              <span className="button-label button-label--desktop">Adicionar ao Carrinho</span>
+              <span className="button-label button-label--mobile">+ Carrinho</span>
             </button>
+            {produtoAdicionadoId === produto.id && (
+              <p className="catalog-card__feedback" role="status">
+                Produto adicionado ao carrinho
+              </p>
+            )}
           </div>
         ))}
       </div>

@@ -32,9 +32,9 @@ function Dashboard() {
         margin: '0 auto'
       }}
     >
-      <h1>Dashboard</h1>
+      <h1>Painel</h1>
       <p style={{ color: '#555', lineHeight: '1.5' }}>
-        Visão geral dos dados simulados da operação, sem utilização de backend.
+        Visão geral dos dados simulados da operação, sem utilização de servidor.
       </p>
 
       <section
@@ -77,7 +77,7 @@ function Dashboard() {
         }}
       >
         <h2 id="resumo-operacional" style={{ marginTop: 0 }}>
-          Resumo Operacional
+          Resumo operacional
         </h2>
 
         <div

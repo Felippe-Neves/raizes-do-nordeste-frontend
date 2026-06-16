@@ -132,7 +132,7 @@ function Home() {
         <div className="home-grid home-grid--promotions">
           {promocoes.map((promocao) => (
             <article className="home-promotion" key={promocao.id}>
-              <span className="home-promotion__discount">{promocao.desconto}% OFF</span>
+              <span className="home-promotion__discount">{promocao.desconto}% de desconto</span>
               <h3>{promocao.titulo}</h3>
               <p>{promocao.descricao}</p>
               <Link to="/cardapio">Ver no cardápio <Icone nome="arrow" /></Link>

@@ -1,4 +1,4 @@
-// Simula os dados que seriam fornecidos por uma API em uma aplicação real.
+// Base mockada que substitui uma API durante a demonstração do projeto.
 const todasUnidades = ['copacabana', 'recreio', 'madureira', 'niteroi', 'buzios', 'paraty'];
 
 const produtosGerais = [
@@ -24,6 +24,7 @@ const produtosGerais = [
   'combo_familia'
 ];
 
+// Cada unidade define seu endereço e quais produtos aparecem no cardápio filtrado.
 export const unidades = [
   {
     id: 'copacabana',
@@ -69,6 +70,7 @@ export const unidades = [
   }
 ];
 
+// Produtos compartilhados pelas páginas de cardápio, carrinho e relatórios simulados.
 export const produtos = [
   {
     id: 'tapioca_queijo',
@@ -312,6 +314,7 @@ export const produtos = [
   }
 ];
 
+// Promoções exibidas na Home, associadas aos produtos por id.
 export const promocoes = [
   {
     id: 'promo_tapioca_suco',
@@ -339,6 +342,7 @@ export const promocoes = [
   }
 ];
 
+// Recompensas usadas para demonstrar o programa de fidelidade por pontos.
 export const recompensas = [
   {
     id: 'reward_cafe',
@@ -363,6 +367,7 @@ export const recompensas = [
   }
 ];
 
+// Pedidos fictícios alimentam o acompanhamento e o dashboard operacional.
 export const pedidosMock = [
   {
     id: 'pedido_001',

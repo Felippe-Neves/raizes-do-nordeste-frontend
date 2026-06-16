@@ -27,7 +27,7 @@ const agruparProdutos = (produtos) =>
   }, []);
 
 const lerCarrinho = () => {
-  // Recupera o carrinho salvo localmente para manter os itens entre acessos.
+  // O localStorage simula persistência de carrinho sem depender de servidor.
   const carrinhoSalvo = localStorage.getItem('carrinho');
   const produtos = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   return agruparProdutos(produtos);
@@ -37,9 +37,10 @@ function Carrinho() {
   const [itens, setItens] = useState(lerCarrinho);
 
   useEffect(() => {
-    // Sincroniza cada alteração do carrinho com o localStorage.
+    // A lista agrupada da interface é convertida de volta para itens simples ao salvar.
     if (itens.length === 0) {
       localStorage.removeItem('carrinho');
+      window.dispatchEvent(new Event('carrinho-atualizado'));
       return;
     }
 
@@ -48,6 +49,7 @@ function Carrinho() {
     );
 
     localStorage.setItem('carrinho', JSON.stringify(produtosParaSalvar));
+    window.dispatchEvent(new Event('carrinho-atualizado'));
   }, [itens]);
 
   const alterarQuantidade = (id, variacao) => {

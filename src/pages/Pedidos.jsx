@@ -55,7 +55,7 @@ function Pedidos() {
       <h1>Acompanhamento de Pedidos</h1>
       <p style={{ lineHeight: '1.5', color: '#555' }}>
         Esta página é uma simulação acadêmica de acompanhamento de pedidos. Os dados exibidos
-        são fictícios e não utilizam backend.
+        são fictícios e não utilizam servidor.
       </p>
 
       <section
@@ -116,7 +116,7 @@ function Pedidos() {
           gap: '16px'
         }}
       >
-        {/* Exibe pedidos simulados para demonstrar o acompanhamento sem backend. */}
+        {/* Exibe pedidos simulados para demonstrar o acompanhamento sem servidor. */}
         {pedidosMock.map((pedido) => (
           <article
             className="order-card"

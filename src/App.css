@@ -80,6 +80,16 @@ canvas {
   padding-top: var(--site-header-height);
 }
 
+.site-footer {
+  width: 100%;
+  padding: 12px 16px 18px;
+  color: rgba(77, 43, 32, 0.62);
+  background: rgba(255, 248, 233, 0.48);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .app-content > .page-layout,
 .app-content > .home-page,
 .app-content > .account-page {
@@ -161,7 +171,8 @@ canvas {
   overflow: hidden;
   border-bottom: 1px solid var(--borda);
   background:
-    radial-gradient(circle at 50% 50%, rgba(255, 253, 248, 0.96) 0 28%, transparent 29%),
+    radial-gradient(circle at 50% 48%, rgba(255, 253, 248, 0.98) 0 30%, transparent 31%),
+    radial-gradient(circle at 50% 48%, rgba(77, 43, 32, 0.11) 0 38%, transparent 39%),
     repeating-linear-gradient(135deg, rgba(159, 47, 32, 0.08) 0 2px, transparent 2px 16px),
     linear-gradient(135deg, #f8e9c9, #f3cf88);
   place-items: center;
@@ -169,14 +180,14 @@ canvas {
 
 .catalog-card__visual::after {
   position: absolute;
-  width: 104px;
-  height: 104px;
-  border: 2px dashed rgba(159, 47, 32, 0.2);
+  width: 112px;
+  height: 112px;
+  border: 2px dashed rgba(159, 47, 32, 0.22);
   border-radius: 50%;
   content: '';
 }
 
-.catalog-card__visual span {
+.catalog-card__emoji {
   position: relative;
   z-index: 1;
   font-size: clamp(4rem, 9vw, 5.5rem);
@@ -186,14 +197,64 @@ canvas {
   transition: transform 0.2s ease;
 }
 
-.catalog-card:hover .catalog-card__visual span {
+.catalog-card:hover .catalog-card__emoji {
   transform: rotate(2deg) scale(1.06);
+}
+
+.catalog-card__tag {
+  position: absolute;
+  z-index: 1;
+  right: 14px;
+  bottom: 12px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 248, 233, 0.52);
+  border-radius: 999px;
+  color: var(--marrom);
+  background: rgba(255, 248, 233, 0.7);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .catalog-card button,
 .loyalty-card button {
   width: 100%;
   margin-top: auto;
+}
+
+.button-label--mobile {
+  display: none;
+}
+
+.cart-link {
+  gap: 7px;
+}
+
+.cart-link__badge {
+  display: inline-grid;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  border-radius: 999px;
+  color: var(--marrom);
+  background: var(--amarelo);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+  place-items: center;
+}
+
+.catalog-card__feedback {
+  width: 100%;
+  margin: 10px 0 0 !important;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: #1b4332;
+  background: #d8f3dc;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-align: center;
 }
 
 .cart-layout {
@@ -498,6 +559,24 @@ canvas {
     pointer-events: none;
   }
 
+  .site-footer {
+    position: fixed;
+    z-index: 20;
+    right: 12px;
+    bottom: max(6px, env(safe-area-inset-bottom));
+    left: 12px;
+    width: auto;
+    padding: 5px 8px;
+    border: 1px solid rgba(231, 207, 170, 0.55);
+    border-radius: 999px;
+    color: rgba(77, 43, 32, 0.74);
+    background: rgba(255, 248, 233, 0.78);
+    box-shadow: 0 6px 16px rgba(77, 43, 32, 0.12);
+    font-size: 0.68rem;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
   .app-content > .page-layout,
   .app-content > .home-page,
   .app-content > .account-page {
@@ -667,12 +746,20 @@ canvas {
   }
 
   .catalog-page .catalog-card__visual::after {
-    width: 66px;
-    height: 66px;
+    width: 60px;
+    height: 60px;
   }
 
-  .catalog-page .catalog-card__visual span {
+  .catalog-page .catalog-card__emoji {
     font-size: clamp(2.7rem, 11vw, 4rem);
+  }
+
+  .catalog-page .catalog-card__tag {
+    right: 8px;
+    bottom: 7px;
+    padding: 4px 7px;
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
   }
 
   .catalog-page .catalog-card h2 {
@@ -687,6 +774,15 @@ canvas {
     line-height: 1.42 !important;
   }
 
+  .catalog-page .catalog-card__description {
+    display: -webkit-box;
+    min-height: calc(0.82rem * 1.42 * 2);
+    max-height: calc(0.82rem * 1.42 * 3);
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
   .catalog-page .catalog-card p[style*='font-weight'] {
     color: var(--vermelho);
     font-size: 0.98rem;
@@ -697,6 +793,14 @@ canvas {
     padding: 8px 9px !important;
     font-size: 0.82rem;
     line-height: 1.2;
+  }
+
+  .catalog-page .button-label--desktop {
+    display: none;
+  }
+
+  .catalog-page .button-label--mobile {
+    display: inline;
   }
 
   .app-content > .home-page {
@@ -775,7 +879,7 @@ canvas {
     margin: -14px -14px 16px;
   }
 
-  .catalog-page .catalog-card__visual span {
+  .catalog-page .catalog-card__emoji {
     font-size: 3.5rem;
   }
 

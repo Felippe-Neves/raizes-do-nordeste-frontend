@@ -15,9 +15,10 @@ function Conta() {
   const [consentimento, setConsentimento] = useState(false);
   const [usuarioSalvo, setUsuarioSalvo] = useState(lerUsuarioSalvo);
 
+  // Login e cadastro são fluxos simulados; apenas o cadastro grava dados locais.
   const entrar = (event) => {
     event.preventDefault();
-    alert('Entrada simulada com sucesso.');
+    alert('Login simulado com sucesso.');
   };
 
   const criarConta = (event) => {
@@ -107,9 +108,9 @@ function Conta() {
         ) : (
           <>
             <div className="login-card__header">
-              <span className="login-card__eyebrow">Cadastro acadêmico</span>
+              <span className="login-card__eyebrow">Cadastro</span>
               <h1>Crie sua conta</h1>
-              <p>Preencha seus dados para participar desta simulação.</p>
+              <p>Preencha seus dados para participar da experiência digital.</p>
             </div>
 
             <form className="login-form" onSubmit={criarConta}>
@@ -168,9 +169,9 @@ function Conta() {
             </form>
 
             <p className="account-switch">
-              Já tem uma conta?{' '}
+              Já tem conta?{' '}
               <button className="text-button" type="button" onClick={() => setModo('entrar')}>
-                Faça login
+                Entrar
               </button>
             </p>
           </>

@@ -4,6 +4,7 @@ import { recompensas } from '../data/mockData';
 function Fidelidade() {
   const [pontos, setPontos] = useState(180);
 
+  // Resgates descontam pontos localmente para demonstrar a regra do programa.
   const handleResgatar = (recompensa) => {
     if (pontos >= recompensa.pontosNecessarios) {
       setPontos((atual) => atual - recompensa.pontosNecessarios);
@@ -15,7 +16,7 @@ function Fidelidade() {
     <div className="page-layout loyalty-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '900px' }}>
       <h1>Programa de Fidelidade</h1>
       <p>
-        Este programa de fidelidade é simulado e respeita o consentimento LGPD salvo na página Conta.
+        Este programa de fidelidade é simulado e respeita o consentimento LGPD salvo na página de login.
       </p>
       <div className="loyalty-balance" style={{ margin: '20px 0', padding: '16px', backgroundColor: '#f1f1f1', borderRadius: '8px' }}>
         <strong>Saldo de pontos:</strong> {pontos}
