@@ -35,6 +35,7 @@ const lerCarrinho = () => {
 
 function Carrinho() {
   const [itens, setItens] = useState(lerCarrinho);
+  const [feedbackPedido, setFeedbackPedido] = useState('');
 
   useEffect(() => {
     // A lista agrupada da interface é convertida de volta para itens simples ao salvar.
@@ -53,6 +54,7 @@ function Carrinho() {
   }, [itens]);
 
   const alterarQuantidade = (id, variacao) => {
+    setFeedbackPedido('');
     setItens((itensAtuais) =>
       itensAtuais
         .map((item) =>
@@ -65,17 +67,22 @@ function Carrinho() {
   };
 
   const removerItem = (id) => {
+    setFeedbackPedido('');
     setItens((itensAtuais) => itensAtuais.filter((item) => item.id !== id));
   };
 
   const limparCarrinho = () => {
+    setFeedbackPedido('');
     setItens([]);
   };
 
   const finalizarPedido = () => {
-    alert('Pagamento enviado para serviço externo.');
-    setItens([]);
-    alert('Pedido confirmado com sucesso.');
+    setFeedbackPedido('Pagamento enviado para serviço externo...');
+
+    setTimeout(() => {
+      setItens([]);
+      setFeedbackPedido('Pedido confirmado com sucesso!');
+    }, 1200);
   };
 
   const quantidadeTotal = itens.reduce((total, item) => total + item.quantidade, 0);
@@ -88,6 +95,12 @@ function Carrinho() {
   return (
     <div className="page-layout cart-page" style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>Carrinho</h1>
+
+      {feedbackPedido && (
+        <div className="cart-feedback" role="status">
+          {feedbackPedido}
+        </div>
+      )}
 
       {itens.length === 0 ? (
         <p>Seu carrinho está vazio. Acesse o cardápio para adicionar produtos.</p>
@@ -165,6 +178,12 @@ function Carrinho() {
             <p style={{ margin: '8px 0 20px', fontSize: '20px' }}>
               <strong>Total:</strong> {formatarMoeda(total)}
             </p>
+
+            {feedbackPedido && (
+              <div className="cart-feedback cart-feedback--summary" role="status">
+                {feedbackPedido}
+              </div>
+            )}
 
             <div className="cart-summary__actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
               <button type="button" onClick={limparCarrinho}>

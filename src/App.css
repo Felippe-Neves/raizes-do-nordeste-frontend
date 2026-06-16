@@ -296,6 +296,22 @@ canvas {
   min-width: 0;
 }
 
+.cart-feedback {
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(42, 120, 77, 0.24);
+  border-radius: 14px;
+  color: #1b4332;
+  background: #d8f3dc;
+  box-shadow: 0 8px 18px rgba(27, 67, 50, 0.08);
+  font-weight: 800;
+}
+
+.cart-feedback--summary {
+  margin: 0 0 18px;
+}
+
 .cart-summary__actions {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr);
