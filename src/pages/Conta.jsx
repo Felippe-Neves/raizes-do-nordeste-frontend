@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const lerUsuarioSalvo = () => {
-  const usuario = localStorage.getItem('usuario');
-  return usuario ? JSON.parse(usuario) : null;
-};
+const TEMPO_MENSAGEM = 3500;
 
 function Conta() {
+  const navigate = useNavigate();
   const [modo, setModo] = useState('entrar');
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -13,12 +12,27 @@ function Conta() {
   const [senha, setSenha] = useState('');
   const [lembrar, setLembrar] = useState(false);
   const [consentimento, setConsentimento] = useState(false);
-  const [usuarioSalvo, setUsuarioSalvo] = useState(lerUsuarioSalvo);
+  const [mensagem, setMensagem] = useState('');
+
+  useEffect(() => {
+    if (!mensagem) {
+      return undefined;
+    }
+
+    const timeout = window.setTimeout(() => {
+      setMensagem('');
+    }, TEMPO_MENSAGEM);
+
+    return () => window.clearTimeout(timeout);
+  }, [mensagem]);
 
   // Login e cadastro são fluxos simulados; apenas o cadastro grava dados locais.
   const entrar = (event) => {
     event.preventDefault();
-    alert('Login simulado com sucesso.');
+    setMensagem('Login realizado com sucesso.');
+    window.setTimeout(() => {
+      navigate('/cardapio');
+    }, 900);
   };
 
   const criarConta = (event) => {
@@ -26,25 +40,28 @@ function Conta() {
 
     // Exige consentimento LGPD antes de salvar os dados simulados.
     if (!consentimento) {
-      alert('Por favor, aceite a Política de Privacidade para continuar.');
+      setMensagem('Aceite a Política de Privacidade para continuar.');
       return;
     }
 
     const usuario = { nome, email, telefone, senha };
     localStorage.setItem('usuario', JSON.stringify(usuario));
-    setUsuarioSalvo(usuario);
-    alert('Conta criada com sucesso.');
-  };
-
-  const excluirDados = () => {
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('carrinho');
-    setUsuarioSalvo(null);
+    setMensagem('Conta criada com sucesso. Faça login para continuar.');
     setNome('');
-    setEmail('');
     setTelefone('');
     setSenha('');
     setConsentimento(false);
+    setModo('entrar');
+  };
+
+  const recuperarSenha = (event) => {
+    event.preventDefault();
+    setMensagem('Recuperação de senha indisponível nesta versão acadêmica.');
+  };
+
+  const alternarModo = (novoModo) => {
+    setMensagem('');
+    setModo(novoModo);
   };
 
   return (
@@ -57,6 +74,12 @@ function Conta() {
               <h1>Faça seu login</h1>
               <p>Entre para continuar sua experiência com os sabores do Nordeste.</p>
             </div>
+
+            {mensagem && (
+              <p className="account-feedback" role="status" aria-live="polite">
+                {mensagem}
+              </p>
+            )}
 
             <form className="login-form" onSubmit={entrar}>
               <label className="account-field">
@@ -88,9 +111,9 @@ function Conta() {
                   />
                   Lembrar de mim
                 </label>
-                <button className="text-button" type="button">
+                <a className="account-link" href="#" onClick={recuperarSenha}>
                   Esqueci minha senha
-                </button>
+                </a>
               </div>
 
               <button className="login-submit" type="submit">
@@ -100,7 +123,7 @@ function Conta() {
 
             <p className="account-switch">
               Não tem conta ainda?{' '}
-              <button className="text-button" type="button" onClick={() => setModo('criar')}>
+              <button className="text-button" type="button" onClick={() => alternarModo('criar')}>
                 Criar conta
               </button>
             </p>
@@ -112,6 +135,12 @@ function Conta() {
               <h1>Crie sua conta</h1>
               <p>Preencha seus dados para participar da experiência digital.</p>
             </div>
+
+            {mensagem && (
+              <p className="account-feedback" role="status" aria-live="polite">
+                {mensagem}
+              </p>
+            )}
 
             <form className="login-form" onSubmit={criarConta}>
               <label className="account-field">
@@ -170,25 +199,13 @@ function Conta() {
 
             <p className="account-switch">
               Já tem conta?{' '}
-              <button className="text-button" type="button" onClick={() => setModo('entrar')}>
+              <button className="text-button" type="button" onClick={() => alternarModo('entrar')}>
                 Entrar
               </button>
             </p>
           </>
         )}
       </section>
-
-      {usuarioSalvo && (
-        <section className="account-panel account-user">
-          <h2>Usuário cadastrado</h2>
-          <p><strong>Nome:</strong> {usuarioSalvo.nome}</p>
-          <p><strong>E-mail:</strong> {usuarioSalvo.email}</p>
-          <p><strong>Telefone:</strong> {usuarioSalvo.telefone}</p>
-          <button type="button" onClick={excluirDados}>
-            Excluir meus dados
-          </button>
-        </section>
-      )}
     </div>
   );
 }

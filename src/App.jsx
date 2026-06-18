@@ -5,7 +5,6 @@ import Cardapio from './pages/Cardapio'
 import Carrinho from './pages/Carrinho'
 import Fidelidade from './pages/Fidelidade'
 import Conta from './pages/Conta'
-import Dashboard from './pages/Dashboard'
 import Pedidos from './pages/Pedidos'
 import './App.css'
 
@@ -81,7 +80,6 @@ function App() {
             <Link to="/pedidos" onClick={fecharMenu}>Pedidos</Link>
             <Link to="/fidelidade" onClick={fecharMenu}>Fidelidade</Link>
             <Link to="/conta" onClick={fecharMenu}>Login</Link>
-            <Link to="/dashboard" onClick={fecharMenu}>Painel</Link>
           </nav>
         </div>
       </header>
@@ -103,7 +101,6 @@ function App() {
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/fidelidade" element={<Fidelidade />} />
           <Route path="/conta" element={<Conta />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/pedidos" element={<Pedidos />} />
         </Routes>
       </div>

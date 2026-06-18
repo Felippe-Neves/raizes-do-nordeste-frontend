@@ -115,9 +115,7 @@ canvas {
 .catalog-grid,
 .loyalty-grid,
 .orders-grid,
-.orders-legend__grid,
-.dashboard-indicators,
-.dashboard-summary__grid {
+.orders-legend__grid {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   gap: 16px !important;
@@ -125,9 +123,7 @@ canvas {
 }
 
 .responsive-card,
-.order-card,
-.dashboard-indicator,
-.dashboard-summary__grid > article {
+.order-card {
   width: 100%;
   min-width: 0;
   padding: 18px !important;
@@ -322,7 +318,6 @@ canvas {
 }
 
 .orders-legend,
-.dashboard-summary,
 .loyalty-balance {
   width: 100%;
   min-width: 0;
@@ -341,12 +336,6 @@ canvas {
 .order-card__header span {
   max-width: 100%;
   white-space: normal;
-}
-
-.dashboard-summary__grid > article strong {
-  display: block;
-  max-width: 100%;
-  overflow-wrap: anywhere;
 }
 
 .account-page,
@@ -614,8 +603,6 @@ canvas {
 
   .responsive-card,
   .order-card,
-  .dashboard-indicator,
-  .dashboard-summary__grid > article,
   .app-content li {
     padding: 14px !important;
   }
@@ -730,8 +717,6 @@ canvas {
   .loyalty-grid,
   .orders-grid,
   .orders-legend__grid,
-  .dashboard-indicators,
-  .dashboard-summary__grid,
   .home-grid--units,
   .home-grid--promotions,
   .home-grid--features {
@@ -963,13 +948,11 @@ canvas {
   .home-grid--promotions,
   .catalog-grid,
   .loyalty-grid,
-  .orders-grid,
-  .dashboard-summary__grid {
+  .orders-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
 
-  .home-grid--features,
-  .dashboard-indicators {
+  .home-grid--features {
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   }
 

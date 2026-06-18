@@ -1,14 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { recompensas } from '../data/mockData';
 
 function Fidelidade() {
   const [pontos, setPontos] = useState(180);
+  const [mensagem, setMensagem] = useState('');
+
+  useEffect(() => {
+    if (!mensagem) {
+      return undefined;
+    }
+
+    const timer = window.setTimeout(() => {
+      setMensagem('');
+    }, 3000);
+
+    return () => window.clearTimeout(timer);
+  }, [mensagem]);
 
   // Resgates descontam pontos localmente para demonstrar a regra do programa.
   const handleResgatar = (recompensa) => {
     if (pontos >= recompensa.pontosNecessarios) {
       setPontos((atual) => atual - recompensa.pontosNecessarios);
-      alert(`Recompensa resgatada: ${recompensa.titulo}`);
+      setMensagem('Recompensa resgatada com sucesso!');
     }
   };
 
@@ -21,6 +34,23 @@ function Fidelidade() {
       <div className="loyalty-balance" style={{ margin: '20px 0', padding: '16px', backgroundColor: '#f1f1f1', borderRadius: '8px' }}>
         <strong>Saldo de pontos:</strong> {pontos}
       </div>
+
+      {mensagem && (
+        <p
+          className="loyalty-feedback"
+          style={{
+            margin: '0 0 16px',
+            padding: '10px 12px',
+            border: '1px solid rgba(42, 120, 77, 0.24)',
+            borderRadius: '10px',
+            color: '#1b4332',
+            backgroundColor: '#d8f3dc',
+            fontWeight: 700
+          }}
+        >
+          {mensagem}
+        </p>
+      )}
 
       <div
         className="responsive-grid loyalty-grid"

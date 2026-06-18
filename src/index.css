@@ -652,6 +652,18 @@ p {
   margin: 0;
 }
 
+.account-feedback {
+  margin: 0 0 18px;
+  padding: 10px 12px;
+  border: 1px solid rgba(42, 120, 77, 0.24);
+  border-radius: 10px;
+  color: #1b4332;
+  background: #d8f3dc;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 .login-card__eyebrow {
   color: var(--vermelho);
   font-size: 0.78rem;
@@ -674,6 +686,8 @@ p {
 }
 
 .login-options .account-consent {
+  align-items: center;
+  gap: 6px;
   margin: 0;
 }
 
@@ -692,6 +706,19 @@ p {
   box-shadow: none !important;
   text-decoration: underline;
   transform: none !important;
+}
+
+.account-link {
+  color: var(--vermelho);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.account-link:hover,
+.account-link:focus-visible {
+  color: var(--vermelho-escuro);
+  text-decoration: underline;
 }
 
 .login-submit {

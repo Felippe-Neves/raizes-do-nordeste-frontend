@@ -367,7 +367,7 @@ export const recompensas = [
   }
 ];
 
-// Pedidos fictícios alimentam o acompanhamento e o dashboard operacional.
+// Pedidos fictícios alimentam o acompanhamento do cliente.
 export const pedidosMock = [
   {
     id: 'pedido_001',
