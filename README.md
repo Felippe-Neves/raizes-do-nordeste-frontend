@@ -1,16 +1,45 @@
-# React + Vite
+# 🌵 Raízes do Nordeste
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto desenvolvido como parte da disciplina de Projeto Multidisciplinar, com foco na trilha Front-end.
 
-Currently, two official plugins are available:
+O projeto simula uma aplicação para uma rede de restaurantes nordestinos, permitindo ao usuário visualizar o cardápio por unidade, realizar pedidos, acompanhar pedidos, utilizar o programa de fidelidade e acessar uma interface moderna e responsiva.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- JavaScript
+- CSS3
+- React Router
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades
+
+- Home responsiva
+- Cardápio por unidade
+- Carrinho de compras
+- Login e Cadastro
+- Programa de Fidelidade
+- Histórico de Pedidos
+- Interface responsiva para dispositivos móveis
+
+---
+
+## Publicação
+
+**GitHub:**  
+https://github.com/Felippe-Neves/raizes-do-nordeste-frontend
+
+**Vercel:**  
+https://raizes-do-nordeste-frontend.vercel.app/
+
+---
+
+## Autor
+
+**Felipe da Silva Neves**
+
+Projeto desenvolvido em **2026** para fins acadêmicos.
